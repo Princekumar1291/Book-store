@@ -1,8 +1,7 @@
 import React from 'react'
-import list from "../../public/list.json"
 import Card from './Card'
 import { Link } from 'react-router-dom'
-function Course() {
+function Course({book}) {
   return (
     <div className='min-h-screen max-w-screen-2xl mx-2 md:m-5 lg:mx-8 py-4 md:pt-8'>
       <div className='text-3xl font-semibold'>
@@ -15,8 +14,8 @@ function Course() {
 
       <div className='flex gap-4 flex-wrap justify-center my-8'>
         {
-          list.map((data) =>
-            <Card data={data} key={data.id}></Card>
+          book.map((data) =>
+            <Card data={data} key={data._id}></Card>
           )
         }
       </div>

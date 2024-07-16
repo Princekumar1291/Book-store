@@ -1,7 +1,8 @@
 import React, { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-
+import axios from 'axios';
+import toast from 'react-hot-toast';
 function Login() {
   const modalRef = useRef(null);
   const navigate = useNavigate();
@@ -12,8 +13,22 @@ function Login() {
   };
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmit = data => console.log(data);
-
+  const onSubmit =async (data) => {
+    await axios.post("http://localhost:4001/user/login",data)
+    .then((res)=>{
+      console.log(res.data.user)
+      if(res.data){
+        toast.success('Login Successfully');
+      }
+    })
+    .catch((err)=>{
+      if(err.response){
+        toast.error("Error: "+ err.response.data.message);
+      }
+      else alert("Error"+err)
+      console.log(err)
+    })
+  }
   return (
     <dialog id="my_modal_3" ref={modalRef} className="modal">
       <div className="modal-box dark:bg-gray-900 dark:text-white">

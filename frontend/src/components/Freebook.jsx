@@ -1,8 +1,7 @@
 import React from 'react'
-import list from "../../public/list.json"
 import Cards from './Cards';
-function Freebook() {
-  const filteredList = list.filter((item) => item.category === "free");
+function Freebook({book}) {
+  const filteredList = book.filter((item) => item.category === "free");
   return (
     <div className='p-4 md:px-8'>
       <div>
